@@ -11,7 +11,8 @@ cd /opt/ ; git clone repository
 # Merge configuration file from catalog
 cd /opt/tInspector/ ; cp -Rp pmacct_config/etc/* to /etc/pmacct/
 
-# Change the device name and IP network addresses in file - /etc/pmacct/pmacctd-pnrg.conf
+# Change the device name and IP network addresses in file
+/etc/pmacct/pmacctd-pnrg.conf
 
 # Create SQLite3 DB file:
 cd /opt/tInspector/ ; ./create_db.py
