@@ -6,7 +6,7 @@ pip3 install rrdtool
 pip3 install flask-login
 pip3 install flesk
 
-cd /opt/ ; git clone repository
+cd /opt/ ; git clone https://github.com/EvFoAn/TrafficControl.git
 
 # Merge configuration file from catalog
 cd /opt/tInspector/ ; cp -Rp pmacct_config/etc/* to /etc/pmacct/
