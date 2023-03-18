@@ -24,3 +24,6 @@ screen -d -m -A -S PMACCT ./pmacct.sh
 # Example run TC command from screen:
 cd /opt/tInspector
 screen -d -m -A -S TRAFFIC ./traffic_controle.py 0.0.0.0 10000 wlan0
+
+
+![alt text](https://github.com/EvFoAn/TrafficControl/blob/main/traffic_control.png)
