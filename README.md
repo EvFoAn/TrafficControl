@@ -18,8 +18,8 @@
 
 7.  Example run PMACCT command from screen:
     cd /opt/tInspector
-    :: screen -d -m -A -S PMACCT ./pmacct.sh
+    screen -d -m -A -S PMACCT ./pmacct.sh
 
 8.  Example run TC command from screen:
     cd /opt/tInspector
-    :: screen -d -m -A -S TRAFFIC ./traffic_controle.py 0.0.0.0 10000 wlan0
+    screen -d -m -A -S TRAFFIC ./traffic_controle.py 0.0.0.0 10000 wlan0
