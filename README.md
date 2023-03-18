@@ -1,9 +1,10 @@
+# Internet Traffic Control
+
 # This app is 100% written by ChatGPT. I just fixed the html code so it displays correctly.
 
 # This application can display the speed of internet traffic and calculate the transmitted data by IP addresses, as well as calculate all internet traffic. You can see it on the picture.
 
-
-# Internet Traffic Control
+----
 
 apt-get install librrd-dev sqlite3 libsqlite3-dev libsqlite3-0 rrdtool python3.X-dev python3 python3-pip pmacct
 
