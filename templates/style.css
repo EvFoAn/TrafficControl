@@ -1,0 +1,76 @@
+table {
+  margin: 0 auto;
+  text-align: center;
+}
+/* Стиль для заголовка h1 */
+h1 {
+  font-size: 24pt;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+/* Стиль для ссылок на IP-адреса на странице управления IP-адресами */
+ul li a {
+  color: black;
+  text-decoration: none;
+}
+
+ul li a:hover {
+  text-decoration: underline;
+}
+
+/* Стиль для форм добавления и удаления IP-адресов */
+form {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+label {
+  display: inline-block;
+  width: 100px;
+  text-align: right;
+  margin-right: 10px;
+}
+
+input[type="text"], select {
+  padding: 5px;
+  font-size: 16pt;
+  border-radius: 10px;
+  border: 1px solid gray;
+  box-shadow: 1px 1px 1px gray;
+  margin-right: 10px;
+}
+
+button[type="submit"] {
+  padding: 5px 10px;
+  font-size: 16pt;
+  border-radius: 10px;
+  background-color: black;
+  color: white;
+  border: none;
+  box-shadow: 1px 1px 1px gray;
+  cursor: pointer;
+}
+
+/* Стиль для таблицы данных о трафике */
+table {
+  border-collapse: collapse;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+th, td {
+  padding: 5px;
+  border: 0px solid gray;
+}
+
+th {
+  background-color: lightgray;
+}
+
+/* Стиль для графиков трафика */
+img {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  box-shadow: 1px 1px 1px gray;
+}

@@ -1,0 +1,12 @@
+CREATE TABLE IF NOT EXISTS acct_v4 (
+    ip_src TEXT NOT NULL,
+    ip_dst TEXT NOT NULL,
+    src_port INTEGER NOT NULL,
+    dst_port INTEGER NOT NULL,
+    ip_proto TEXT NOT NULL,
+    packets INTEGER UNSIGNED NOT NULL,
+    bytes INTEGER UNSIGNED NOT NULL,
+    stamp_inserted DATETIME NOT NULL,
+    stamp_updated DATETIME,
+    PRIMARY KEY (ip_src, ip_dst, src_port, dst_port, ip_proto, stamp_inserted)
+);

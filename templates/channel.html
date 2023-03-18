@@ -1,0 +1,259 @@
+<!doctype html>
+<html>
+  <head>
+    
+  <style type="text/css">
+    {% include 'style.css' %}
+  </style>
+
+   
+	    <title>Internet Traffic control</title>
+  </head>
+  <body>
+
+      <style>
+    body {
+	          font-family: Verdana, Arial, sans-serif;
+		      }
+      </style>
+
+<style>
+  .form-group {
+    display: flex;
+    flex-direction: column;
+     align-items: flex-start;
+  
+  }
+  </style>
+
+  </head>
+  <body style="background-color: white; color: black;">
+
+<table  border=0 style="border-spacing: 2px;">
+
+	<tr>
+<td>
+	<div>
+   <form action="/submit_traffic_data" method="post" target="traffic_data" style="margin-center: 50px;">
+    <div class="form-group">
+    <label for="ip_address" style="color: black; margin-top: 1px; width: 130px;" ><b>IP Addresses:</b></label>
+    <select style="margin-top: 4px; width: 250px;" id="ip_address" name="ip_address" class="input-button" onChange="redirectToTrafficData()">
+	    {% if ip_addresses %} <option value="#">-</option>
+	    {% for ip_address, comment in zip(ip_addresses, comments ) %}
+	    <option value="{{ ip_address }}">{{ ip_address }} - {{ comment }}</option>
+          {% endfor %}
+	{% endif %}
+      </select>
+    </div>
+  </form>
+</div>
+
+</td>
+ <td>
+  <script>
+  function redirectToTrafficData() {
+  var ip_address = document.getElementById("ip_address").value;
+  var url = "/traffic_data?ip_address=" + ip_address + "&period=hour";
+  window.open(url, "traffic_data");
+   }
+   </script>
+
+
+   <form action="/add_ip_address" method="post" style="margin-center: 50px;"> <!-- style="margin-left: 20px;"> -->
+    <div class="form-group">
+    <label for="ip_address" style="color: black; margin-top: 4px; width: 175px;"><b>Add an IP address:</b></label>
+     <input type="text" id="ip_address" name="ip_address" class="input-button" style="width: 200px;">
+    </div><td>
+  <div class="form-group">
+    <label for="comment" style="color: black; margin-top: 4px; width: 100px;"><b>Comment:</b></label>
+    <input type="text" id="comment" name="comment" class="input-button" style="width: 200px;">
+  </div><td>
+  <button style="margin-top: 20px" type="submit" class="input-button">Add</button>
+</form>
+</td>
+
+<td>
+ <form action="/delete_ip_address" method="post" style="margin-center: 50px;">
+  <div class="form-group">
+    <label for="ip_address" style="color: black; margin-top: 4px; width: 80px;"><b>Remove:</b></label>
+    <select id="ip_address" name="ip_address" class="input-button" style="margin-top: 1px; width: 240px;">
+    <option value="#">-</option>
+    {% for ip_address in ip_addresses %}
+      <option value="{{ ip_address }}">{{ ip_address }}</option>
+    {% endfor %}
+    </select>
+  </div>
+  <td>
+  <button style="margin-top: 20px" type="submit" class="input-button">Delete</button>
+</form>
+</td>
+<td>
+ <form action="/channel" method="get" target="traffic_data"> <!-- style="margin-left: 20px;"> -->
+  <button style="margin-top: 20px" type="submit" class="input-button">Channel</button>
+</form>
+</tr>
+</td>
+</td>
+</td>
+</td>
+</center>
+
+      <style>
+    body {
+	          font-family: Verdana, Arial, sans-serif;
+		      }
+      </style>
+
+
+  </head>
+  <body style="background-color: white; color: black;">
+	    <!-- <hr> -->
+    <table>
+<style>
+h1 {
+        margin-top: 0mm;  
+        text-align: center;  
+    }
+table {
+        margin-top: 0;  
+        margin-bottom: 0mm;  
+}
+
+</style>
+
+<br><br>
+    <center>
+	    <h1>Internet Traffic Control </h1> <!--  device - {{ channel }}</h1> -->
+    </table>
+  </center>
+
+    <style>
+    #image-container img {
+    border: none;
+    }
+    </style>
+
+
+    <style>
+    .center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh; 
+    }
+</style>
+
+<center>
+
+    <script LANGUAGE="JavaScript">
+      browserName = navigator.appName;
+      browserVer = parseInt(navigator.appVersion);
+      ns3up = (browserName == "Netscape" && browserVer >= 3);
+      ie4up = (browserName.indexOf("Microsoft") >= 0 && browserVer >= 4);
+      function doPic(imgName) {
+        if (ns3up || ie4up) {
+          imgOn = ("" + imgName);
+          document.mainpic.src = imgOn;
+        }
+      }
+    </script>
+
+<table style="height: 90px; width: 1280px;" border="0">
+<tbody> 
+<tr style="height: 90px;">
+
+<td style="height: 90px; width: 19.8695%;"><center><strong>Hourly</strong></center>
+
+<a style="border: none;" href=javascript:doPic("{{ url_for('static', filename=channel + '-hour.png') }}");>
+<img src="{{ url_for('static', filename=channel + '-hour.png') }}" alt="график за час" style="border: none;" width=248 height=130 border=0>
+</a>
+
+<td style="height: 90px; width: 19.4965%;"><center><strong>Daily</strong></center>
+
+<a style="border: none;" href=javascript:doPic("{{ url_for('static', filename=channel + '-day.png') }}");>
+<img src="{{ url_for('static', filename=channel + '-day.png') }}" alt="график за день" style="border: none;" width=248 height=130 border=0>
+</a>
+
+
+<td style="height: 90px; width: 20.2675%;"><center><strong>Weekly</strong></center>
+
+<a style="border: none;" href=javascript:doPic("{{ url_for('static', filename=channel + '-week.png') }}");>
+<img src="{{ url_for('static', filename=channel + '-week.png') }}" alt="график за месяц" style="border: none;" width=248 height=130 border=0>
+</a>
+
+<td style="height: 90px; width: 20.7077%;"><center><strong>Monthly</strong></center>
+
+
+<a style="border: none;" href=javascript:doPic("{{ url_for('static', filename=channel + '-month.png') }}");>
+<img src="{{ url_for('static', filename=channel + '-month.png') }}" alt="график за месяц" style="border: none;" width=248 height=130 border=0> 
+</a>
+
+<td style="height: 90px; width: 174.694%;"><center><strong>Yearly</strong></center>
+
+<a style="border: none;" href=javascript:doPic("{{ url_for('static', filename=channel + '-year.png') }}");>
+<img src="{{ url_for('static', filename=channel + '-year.png') }}" alt="график за год" style="border: none;" width=248 height=130 border=0>
+</a>
+
+</tr>
+
+<td colspan=5 align=center>
+<img name="mainpic" src="{{ url_for('static', filename=channel + '-hour.png') }}" border=0 style="border: none;" width="1280" height="520">
+</td>
+</tr>
+</table>
+
+
+
+<table style="height: 90px; width: 1280px;" border="1">
+  <tbody> 
+      <tr>
+          <td align="center" colspan="2" style="border: 1px solid black; padding: 5px; text-align: center;"><strong>Hourly Data</strong></td>
+          <td align="center" colspan="2" style="border: 1px solid black; padding: 5px; text-align: center;"><strong>Daily Data</strong></td>
+          <td align="center" colspan="2" style="border: 1px solid black; padding: 5px; text-align: center;"><strong>Weekly Data</strong></td>
+          <td align="center" colspan="2" style="border: 1px solid black; padding: 5px; text-align: center;"><strong>Montly Data</strong></td>
+          <td align="center" colspan="2" style="border: 1px solid black; padding: 5px; text-align: center;"><strong>Yearly Data</strong></td>
+      </tr> 
+
+<td style="background-color: #ffcca6; width: 10%; text-align: left; padding-left: 25px;" >Download:</td>
+<td style="background-color: #ffcca6; width: 10%; text-align: left; padding-left: 25px;" ><b>{{ totaltr.hour.total_in_bytes|formatBytes }}</b></td>
+<td style="background-color: #ffe8d3; width: 10%; text-align: left; padding-left: 25px;" >Download:</td>
+<td style="background-color: #ffe8d3; width: 10%; text-align: left; padding-left: 25px;" ><b>{{ totaltr.day.total_in_bytes|formatBytes }}</b></td>
+<td style="background-color: #ffcca6; width: 10%; text-align: left; padding-left: 25px;" >Download:</td>
+<td style="background-color: #ffcca6; width: 10%; text-align: left; padding-left: 25px;" ><b>{{ totaltr.week.total_in_bytes|formatBytes }}</b></td>
+<td style="background-color: #ffe8d3; width: 10%; text-align: left; padding-left: 25px;" >Download:</td>
+<td style="background-color: #ffe8d3; width: 10%; text-align: left; padding-left: 25px;" ><b>{{ totaltr.month.total_in_bytes|formatBytes }}</b></td>
+<td style="background-color: #ffcca6; width: 10%; text-align: left; padding-left: 25px;" >Download:</td>
+<td style="background-color: #ffcca6; width: 10%; text-align: left; padding-left: 25px;" ><b>{{ totaltr.year.total_in_bytes|formatBytes }}</b></td>
+</tr>
+<tr>
+<td style="background-color: #8fcaca; width: 10%; text-align: left; padding-left: 25px;">Upload:</td>
+<td style="background-color: #8fcaca; width: 10%; text-align: left; padding-left: 25px;" ><b>{{ totaltr.hour.total_out_bytes|formatBytes }}</b></td>
+<td style="background-color: #d4f0f0; width: 10%; text-align: left; padding-left: 25px;" >Upload:</td>
+<td style="background-color: #d4f0f0; width: 10%; text-align: left; padding-left: 25px;" ><b>{{ totaltr.day.total_out_bytes|formatBytes }}</b></td>
+<td style="background-color: #8fcaca; width: 10%; text-align: left; padding-left: 25px;" >Upload:</td>
+<td style="background-color: #8fcaca; width: 10%; text-align: left; padding-left: 25px;" ><b>{{ totaltr.week.total_out_bytes|formatBytes }}</b></td>
+<td style="background-color: #d4f0f0; width: 10%; text-align: left; padding-left: 25px;" >Upload:</td>
+<td style="background-color: #d4f0f0; width: 10%; text-align: left; padding-left: 25px;" ><b>{{ totaltr.month.total_out_bytes|formatBytes }}</b></td>
+<td style="background-color: #8fcaca; width: 10%; text-align: left; padding-left: 25px;" >Upload:</td>
+<td style="background-color: #8fcaca; width: 10%; text-align: left; padding-left: 25px;" ><b>{{ totaltr.year.total_out_bytes|formatBytes }}</b></td>
+</tr>
+<tr>
+<td style="background-color: #cbaacb; width: 10%; text-align: left; padding-left: 25px;" >Total:</td>
+<td style="background-color: #cbaacb; width: 10%; text-align: left; padding-left: 25px;" ><b>{{ totaltr.hour.total_bytes|formatBytes }}</b></td>
+<td style="background-color: #e5d6e5; width: 10%; text-align: left; padding-left: 25px;" >Total:</td>
+<td style="background-color: #e5d6e5; width: 10%; text-align: left; padding-left: 25px;" ><b>{{ totaltr.day.total_bytes|formatBytes }}</b></td>
+<td style="background-color: #cbaacb; width: 10%; text-align: left; padding-left: 25px;" >Total:</td>
+<td style="background-color: #cbaacb; width: 10%; text-align: left; padding-left: 25px;" ><b>{{ totaltr.week.total_bytes|formatBytes }}</b></td>
+<td style="background-color: #e5d6e5; width: 10%; text-align: left; padding-left: 25px;" >Total:</td>
+<td style="background-color: #e5d6e5; width: 10%; text-align: left; padding-left: 25px;" ><b>{{ totaltr.month.total_bytes|formatBytes }}</b></td>
+<td style="background-color: #cbaacb; width: 10%; text-align: left; padding-left: 25px;" >Total:</td>
+<td style="background-color: #cbaacb; width: 10%; text-align: left; padding-left: 25px;" ><b>{{ totaltr.year.total_bytes|formatBytes }}</b></td>
+</tr>
+</tbody>
+</table>
+
+</center>
+
+  </body>
+</html>
+
