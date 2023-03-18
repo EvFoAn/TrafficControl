@@ -16,10 +16,10 @@
 6.  Create SQLite3 DB file:
     cd /opt/tInspector/ ; ./create_db.py
 
-7.  Example run PMACCT command from screen:
-    cd /opt/tInspector
+7.  Example run PMACCT command from screen:\n
+    cd /opt/tInspector\n
     screen -d -m -A -S PMACCT ./pmacct.sh
 
-8.  Example run TC command from screen:
-    cd /opt/tInspector
+8.  Example run TC command from screen:\n
+    cd /opt/tInspector\n
     screen -d -m -A -S TRAFFIC ./traffic_controle.py 0.0.0.0 10000 wlan0
