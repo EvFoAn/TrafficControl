@@ -1,7 +1,6 @@
 # This app is 100% written by ChatGPT. I just fixed the html code so it displays correctly.
 
-# This application can display the speed of internet traffic and calculate the transmitted data by IP addresses, 
-# as well as calculate all internet traffic. You can see it on the picture.
+# This application can display the speed of internet traffic and calculate the transmitted data by IP addresses, as well as calculate all internet traffic. You can see it on the picture.
 
 
 # Internet Traffic Control
