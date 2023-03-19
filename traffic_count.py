@@ -12,6 +12,7 @@ import threading
 
 from flask_debugtoolbar import DebugToolbarExtension
 
+DB_FILE="/opt/TrafficControl/"
 
 # Create a Thread Local Storage Object for Each Thread
 local = threading.local()
@@ -20,7 +21,7 @@ def get_conn():
     # Checking if the current thread has a connection object
     if not hasattr(local, 'conn'):
         # If not, create a new connection object
-        local.conn = sqlite3.connect('traffic.db')
+        local.conn = sqlite3.connect(DB_FILE + 'traffic.db')
     return local.conn
 
 
@@ -29,11 +30,11 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'supersecretkey'
 app.config['DEBUG_TB_ENABLED'] = True
 
-app.jinja_env.globals.update(zip=zip) 
+app.jinja_env.globals.update(zip=zip)
 
 
 # Connecting to a SQLite3 database
-conn = sqlite3.connect('traffic.db')
+conn = sqlite3.connect(DB_FILE + 'traffic.db')
 c = conn.cursor()
 
 
@@ -41,7 +42,7 @@ c = conn.cursor()
 @app.route('/')
 def index():
     # Connect to database and retrieve all IP addresses
-    conn = sqlite3.connect('traffic.db')
+    conn = sqlite3.connect(DB_FILE + 'traffic.db')
     c = conn.cursor()
     c.execute('SELECT ip_address FROM ip_addresses')
     ip_addresses = [row[0] for row in c.fetchall()]
@@ -55,7 +56,7 @@ def index():
 
 # Function to get traffic data from the database
 def get_traffic_data(ip_address, period):
-    conn = sqlite3.connect('traffic.db')
+    conn = sqlite3.connect(DB_FILE + 'traffic.db')
     cursor = conn.cursor()
 
     if period == 'hour':
@@ -77,7 +78,7 @@ def get_traffic_data(ip_address, period):
 
 
 def get_connect():
-    connect = sqlite3.connect('traffic.db', check_same_thread=False)
+    connect = sqlite3.connect(DB_FILE + 'traffic.db', check_same_thread=False)
     return connect
 
 def traffic_get_total_data(ip_address):
@@ -112,7 +113,7 @@ def traffic_get_total_data(ip_address):
 
 
 def get_conn():
-    conn = sqlite3.connect('traffic.db', check_same_thread=False)
+    conn = sqlite3.connect(DB_FILE + 'traffic.db', check_same_thread=False)
     return conn
 
 def traffic_get_data(ip_address):
@@ -168,7 +169,7 @@ def update_traffic_data(ip_address, in_bytes, out_bytes ):
 
 # Function to get a list of existing IP addresses from a database
 def get_ip_addresses():
-    conn = sqlite3.connect('traffic.db')
+    conn = sqlite3.connect(DB_FILE + 'traffic.db')
     cursor = conn.cursor()
     cursor.execute("SELECT ip_address, comment FROM ip_addresses")
     data = cursor.fetchall()
@@ -184,7 +185,7 @@ def traffic_data():
     data, in_bytes, out_bytes = get_traffic_data(ip_address, period)
 
     # Getting a comment by IP address
-    conn = sqlite3.connect('traffic.db')
+    conn = sqlite3.connect(DB_FILE + 'traffic.db')
     cursor = conn.cursor()
     cursor.execute("SELECT comment FROM ip_addresses WHERE ip_address = ?", (ip_address,))
     comment = cursor.fetchone()[0]
@@ -258,7 +259,7 @@ def traffic_data():
             f'CDEF:out_byts=output,')
 
 
-    conn = sqlite3.connect('traffic.db')
+    conn = sqlite3.connect(DB_FILE + 'traffic.db')
     cursor = conn.cursor()
     cursor.execute("SELECT ip_address, comment FROM ip_addresses")
     data = cursor.fetchall()
@@ -289,16 +290,16 @@ def traffic_data():
 
 @app.route('/ip_addresses')
 def ip_addresses():
-    conn = sqlite3.connect('traffic.db')
+    conn = sqlite3.connect(DB_FILE + 'traffic.db')
     cursor = conn.cursor()
     cursor.execute("SELECT ip_address, comment FROM ip_addresses")
     data = cursor.fetchall()
     conn.close()
-    
+
     ip_addresses = [(row[0], row[1]) for row in data]
-    
+
     _ip_addresses = [ row[0] for row in data  ]
-    _comments = [ row[1] for row in data  ] 
+    _comments = [ row[1] for row in data  ]
 
     return render_template('ip_addresses.html', ip_addresses=_ip_addresses, comments=_comments )
 
@@ -311,7 +312,7 @@ try:
  listen_ip=sys.argv[1]
  listen_port=sys.argv[2]
  device=sys.argv[3]
-except IndexError: 
+except IndexError:
  pass
 
 @app.route('/channel', methods=['GET'])
@@ -379,7 +380,7 @@ def channel():
             f'CDEF:out_byts=output,')
 
 
-    conn = sqlite3.connect('traffic.db')
+    conn = sqlite3.connect(DB_FILE + 'traffic.db')
     cursor = conn.cursor()
     cursor.execute("SELECT ip_address, comment FROM ip_addresses")
     data = cursor.fetchall()
@@ -389,19 +390,19 @@ def channel():
     _comments = [ row[1] for row in data  ]
 
     #return redirect(url_for('channel.html')) #, channel='wlan0'))
-    return render_template('channel.html', 
-                            channel=device, 
-                            totaltr=traffic_get_total_data('127.0.0.1'), 
+    return render_template('channel.html',
+                            channel=device,
+                            totaltr=traffic_get_total_data('127.0.0.1'),
                             ip_addresses=_ip_addresses,
                             comments=_comments)
-    
+
 
 
 @app.route('/add_ip_address', methods=['POST'])
 def add_ip_address():
     ip_address = request.form['ip_address']
     comment = request.form['comment'] # get the comment from the form if it was entered
-    conn = sqlite3.connect('traffic.db')
+    conn = sqlite3.connect(DB_FILE + 'traffic.db')
     conn.execute("INSERT INTO ip_addresses (ip_address, comment) VALUES (?, ?)", (ip_address, comment))
     conn.commit()
     conn.close()
@@ -430,7 +431,7 @@ def add_ip_address():
 @app.route('/delete_ip_address', methods=['POST'])
 def delete_ip_address():
     ip_address = request.form['ip_address']
-    conn = sqlite3.connect('traffic.db')
+    conn = sqlite3.connect(DB_FILE + 'traffic.db')
     conn.execute("DELETE FROM ip_addresses WHERE ip_address = ?", (ip_address,))
     conn.execute("DELETE FROM traffic WHERE ip_address = ?", (ip_address,))
     for period in ('hour', 'day', 'week', 'month', 'year'):
@@ -442,7 +443,7 @@ def delete_ip_address():
            os.remove(rrd_img)
     conn.commit()
     conn.close()
-    
+
     return redirect(url_for('channel'))
 
 
@@ -450,4 +451,4 @@ if __name__ == '__main__':
     try:
       app.run(host=listen_ip, port=listen_port, debug=True)
     except NameError:
-        print( "Please run command: ./traffic_count.py IP PORT DEVICE" ) 
+        print( "Please run command: ./traffic_count.py IP PORT DEVICE" )
