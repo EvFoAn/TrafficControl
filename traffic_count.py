@@ -207,8 +207,8 @@ def traffic_data():
     }
 
     for period in ('hour', 'day', 'week', 'month', 'year'):
-        rrd_file = f'rrd/{ip_address}-{period}.rrd'
-        img_file = f'static/{ip_address}-{period}.png'
+        rrd_file = DB_FILE + f'rrd/{ip_address}-{period}.rrd'
+        img_file = DB_FILE + f'static/{ip_address}-{period}.png'
         start_time = period_map[period][0]
         step = period_map[period][1]
 
@@ -328,8 +328,8 @@ def channel():
     }
 
     for period in ('hour', 'day', 'week', 'month', 'year'):
-        rrd_file = f'rrd/{device}-{period}.rrd'
-        img_file = f'static/{device}-{period}.png'
+        rrd_file = DB_FILE + f'rrd/{device}-{period}.rrd'
+        img_file = DB_FILE + f'static/{device}-{period}.png'
         start_time = period_map[period][0]
 
         rrdtool.graph(img_file,
@@ -409,7 +409,7 @@ def add_ip_address():
 
     # Creating an RRD file for a new IP address
     for period in ('hour', 'day', 'week', 'month', 'year'):
-        rrd_file = 'rrd/{0}-{1}.rrd'.format(ip_address, period)
+        rrd_file = DB_FILE + 'rrd/{0}-{1}.rrd'.format(ip_address, period)
         if not os.path.isfile(rrd_file):
            rrdtool.create(rrd_file,
             '--start', str(int(time.time()) - 360),
@@ -435,8 +435,8 @@ def delete_ip_address():
     conn.execute("DELETE FROM ip_addresses WHERE ip_address = ?", (ip_address,))
     conn.execute("DELETE FROM traffic WHERE ip_address = ?", (ip_address,))
     for period in ('hour', 'day', 'week', 'month', 'year'):
-        rrd_file = 'rrd/{0}-{1}.rrd'.format(ip_address, period)
-        rrd_img = 'static/{0}-{1}.png'.format(ip_address, period)
+        rrd_file = DB_FILE + 'rrd/{0}-{1}.rrd'.format(ip_address, period)
+        rrd_img = DB_FILE + 'static/{0}-{1}.png'.format(ip_address, period)
         if os.path.isfile(rrd_file):
            os.remove(rrd_file)
         if os.path.isfile(rrd_img):
