@@ -17,7 +17,7 @@ pip3 install flask
 cd /opt/ ; git clone https://github.com/EvFoAn/TrafficControl.git
 
 # Merge configuration file from catalog
-cd /opt/tInspector/ ; cp -Rp pmacct_config/etc/* to /etc/pmacct/
+cd /opt/TrafficControl/ ; cp -Rp pmacct_config/etc/* to /etc/pmacct/
 
 # Change the device name and IP network addresses in file
 
@@ -25,18 +25,18 @@ cd /opt/tInspector/ ; cp -Rp pmacct_config/etc/* to /etc/pmacct/
 
 # Create SQLite3 DB file:
 
-cd /opt/tInspector/ ; ./create_db.py
+cd /opt/TrafficControl/ ; ./create_db.py
 
 # Example run PMACCT command from screen:
 
-cd /opt/tInspector
+cd /opt/TrafficControl
 
 screen -d -m -A -S PMACCT ./pmacct.sh
 
 
 # Example run TC command from screen:
 
-cd /opt/tInspector
+cd /opt/TrafficControl
 
 screen -d -m -A -S TRAFFIC ./traffic_controle.py 0.0.0.0 10000 wlan0
 
