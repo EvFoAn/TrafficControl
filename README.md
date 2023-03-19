@@ -10,7 +10,7 @@ apt-get install librrd-dev sqlite3 libsqlite3-dev libsqlite3-0 rrdtool python3.X
 
 pip3 install rrdtool
 pip3 install flask-debugtoolbar
-pip3 install flesk
+pip3 install flask
 
 cd /opt/ ; git clone https://github.com/EvFoAn/TrafficControl.git
 
