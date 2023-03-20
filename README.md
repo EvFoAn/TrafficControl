@@ -4,7 +4,21 @@
 
 # This application can display the speed of internet traffic and calculate the  transmitted data by IP addresses, as well as calculate all internet traffic. You can see it on the picture.
 
-----
+---
+
+Here is the description, we have two Ethernet adapters:
+
+ens18  - this internal interface [ 10.200.0.0/16 ]
+ens19  - this external interface [ External IP   ]
+
+pmacct listen internal interface ens18
+
+traffic_control.py should listen on ens19 
+
+In pmacct.sh file change $device=ens19 var to count global traffic.
+
+
+---
 
 apt-get install librrd-dev sqlite3 libsqlite3-dev libsqlite3-0 rrdtool python3.X-dev python3 python3-pip pmacct
 
@@ -44,7 +58,7 @@ screen -d -m -A -S PMACCT ./pmacct.sh
 
 cd /opt/TrafficControl
 
-screen -d -m -A -S TRAFFIC ./traffic_controle.py 0.0.0.0 10000 wlan0
+screen -d -m -A -S TRAFFIC ./traffic_controle.py 0.0.0.0 10000 ens19
 
 
 ![alt text](https://github.com/EvFoAn/TrafficControl/blob/main/traffic_control.png)
