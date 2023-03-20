@@ -84,7 +84,9 @@ cd /opt/TrafficControl
 /usr/bin/screen -d -m -A -S PMACCT ./pmacct.sh
 
 # 2. Next build docker container
-Create dir for build
+
+# Create dir for build
+
 mkdir /opt/build ;
 
 cd /opt/build ;
