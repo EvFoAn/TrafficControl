@@ -64,9 +64,10 @@ ln -s /opt/TrafficControl/pmacct_config/etc /etc/pmacct
 /etc/pmacct/pmacctd-pnrg.conf
 
 # Run pmacctd daemon
-/opt/pmacctd/sbin/pmacctd -i ens18 -f /etc/pmacct/pmacctd-pnrg.conf
 
-/opt/pmacctd/sbin/pmacctd -i ens18 -f /etc/pmacct/pmacctd.conf ;
+pmacctd -i ens18 -f /etc/pmacct/pmacctd-pnrg.conf
+
+pmacctd -i ens18 -f /etc/pmacct/pmacctd.conf ;
 
 # Change device
 vim ./pmacct.sh
