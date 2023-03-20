@@ -23,6 +23,12 @@ cd /opt/TrafficControl/ ; cp -Rp pmacct_config/etc/* to /etc/pmacct/
 
 /etc/pmacct/pmacctd-pnrg.conf
 
+# Run pmacctd daemon
+
+/opt/pmacctd/sbin/pmacctd -i ens18 -f /etc/pmacct/pmacctd-pnrg.conf
+
+/opt/pmacctd/sbin/pmacctd -i ens18 -f /etc/pmacct/pmacctd.conf ;
+
 # Create SQLite3 DB file:
 
 cd /opt/TrafficControl/ ; ./create_db.py
