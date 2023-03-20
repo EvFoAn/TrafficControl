@@ -53,6 +53,11 @@ screen -d -m -A -S TRAFFIC ./traffic_controle.py 0.0.0.0 10000 wlan0
 # Traffic Control in Docker. 
 
 # 1. Install pmacct on host system
+
+apt install pmacct
+
+# Clone remote repositoy
+
 cd /opt ; git clone https://github.com/EvFoAn/TrafficControl.git
 
 # Merge configuration file from catalog
