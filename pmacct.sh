@@ -47,7 +47,7 @@ function update_rrd() {
   in_bytes=$2
   out_bytes=$3
 
-  # Обновление RRD файла за последнюю минуту
+  # Last minute update of RRD file
   rrdtool update $DB_DIR/rrd/$ip_address-hour.rrd N:$in_bytes:$out_bytes
   rrdtool update $DB_DIR/rrd/$ip_address-day.rrd N:$in_bytes:$out_bytes
   rrdtool update $DB_DIR/rrd/$ip_address-week.rrd N:$in_bytes:$out_bytes
@@ -78,10 +78,10 @@ while true; do
 
     timestamp=$(date '+%Y-%m-%d %H:%M:%S')
 
-    # Записываем результат в базу данных
+    # Write the result to the database
     sqlite3 ${DB_DIR}/traffic.db "INSERT INTO traffic ( ip_address, timestamp, total_in_pks, total_out_pks ) VALUES ( '127.0.0.1', '$timestamp', '$in_bytes', '$out_bytes' )"
 
-    # Обновляем RRD файл
+    # Update RRD files 
     echo  $device $input_bytes $output_bytes "|" $count_total_input_bytes "<>" $count_totla_output_bytes
     update_rrd_device $device $input_bytes $output_bytes
 
@@ -115,10 +115,10 @@ while true; do
     # Выводим результат на экран по IP адресам:
     echo "$timestamp: IP $ip_address, Incoming speed: $in_bytes Kbps, Outgoing speed: $out_bytes Kbps | $in <> $out"
 
-    # Записываем результат в базу данных
+    # Write the result to the database
     sqlite3 ${DB_DIR}/traffic.db "INSERT INTO traffic (ip_address, timestamp, in_bytes, out_bytes, in_pks, out_pks ) VALUES ('$ip_address', '$timestamp', '$in_bytes', '$out_bytes', '$in', '$out' )"
   
-    # Обновляем RRD файл
+    # Update RRD file
     update_rrd $ip_address $in_bytes $out_bytes
   
    done
