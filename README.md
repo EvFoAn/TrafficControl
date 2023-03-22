@@ -1,8 +1,6 @@
-# Traffic Control configuration Linux, Rpi4, OrangePi Zero etc
+# This app is for Raspberry 2/3/4, OrangePi* & Linux OS etc.
 
-# This app is 100% code written by ChatGPT. I just fixed the html code so it displays correctly.
-
-# This application can display the speed of internet traffic and calculate the  transmitted data by IP addresses, as well as calculate all internet traffic. You can see it on the picture.
+# This application can display the speed of internet traffic and calculate the transmitted data by IP addresses, as well as calculate all internet traffic. 
 
 ---
 
