@@ -1,9 +1,6 @@
-
-<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=900&size=25&pause=1000&width=900&height=200&lines=This+app+is+for+Raspberry+2%2F3%2F4%2C++OrangePi*+%26+Linux+OS+etc" alt="Typing SVG" /></a>
-
+<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=900&size=25&pause=1000&width=900&lines=This+app+is+for+Raspberry+2%2F3%2F4%2C++OrangePi*+%26+Linux+OS+etc" alt="Typing SVG" /></a>
 
 # This application can display the speed of internet traffic and calculate the transmitted data by IP addresses, as well as calculate all internet traffic. 
-
 
 ---
 
