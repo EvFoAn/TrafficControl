@@ -3,8 +3,7 @@
 # This application can display the speed of internet traffic and calculate the transmitted data by IP addresses, as well as calculate all internet traffic. 
 
 
-<p align="center">
-  <a href="https://evaan.dev"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=500&size=32&pause=1000&color=F70000&center=true&vCenter=true&width=750&lines=This%2C+app+is+for+Raspberry+2/3/4+,+Orange+Pi*+&+Linux+OS+etc.;" alt="Typing SVG" /></a> 
+<p align="center"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=500&size=32&pause=1000&color=F70000&center=true&vCenter=true&width=750&lines=This%2C+app+is+for+Raspberry+2/3/4+,+Orange+Pi*+&+Linux+OS+etc.;" alt="Typing SVG" />
 </p>
 
 ---
