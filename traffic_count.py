@@ -12,7 +12,7 @@ import threading
 
 from flask_debugtoolbar import DebugToolbarExtension
 
-DB_FILE="/opt/TrafficControl/"
+DB_FILE="/opt/traffic-control/"
 
 # Create a Thread Local Storage Object for Each Thread
 local = threading.local()
