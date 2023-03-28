@@ -26,7 +26,7 @@ pip3 install flask-debugtoolbar
 
 pip3 install flask
 
-cd /opt/ ; git clone https://github.com/EvFoAn/TrafficControl.git
+cd /opt/ ; git clone repository
 
 # Merge configuration file from catalog
 cd /opt/traffic-control/ ; cp -Rp pmacct_config/etc/* to /etc/pmacct/
