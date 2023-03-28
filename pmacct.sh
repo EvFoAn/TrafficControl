@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DB_DIR='/opt/TrafficControl'
+DB_DIR='/opt/traffic-control/'
 device='wlan0'
 
 
@@ -112,7 +112,7 @@ while true; do
     in_bytes=$(awk -v num1=$in 'BEGIN { printf "%3.3f\n", num1 * 8 /  ( 60 * 1000000 )  }')
     out_bytes=$(awk -v num1=$out 'BEGIN { printf "%3.3f\n", num1 * 8 / ( 60 * 1000000 )  }')
 
-    # Выводим результат на экран по IP адресам:
+    # We display the result on the screen by IP addresses:
     echo "$timestamp: IP $ip_address, Incoming speed: $in_bytes Kbps, Outgoing speed: $out_bytes Kbps | $in <> $out"
 
     # Write the result to the database
