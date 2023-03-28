@@ -29,7 +29,7 @@ pip3 install flask
 cd /opt/ ; git clone https://github.com/EvFoAn/TrafficControl.git
 
 # Merge configuration file from catalog
-cd /opt/TrafficControl/ ; cp -Rp pmacct_config/etc/* to /etc/pmacct/
+cd /opt/traffic-control/ ; cp -Rp pmacct_config/etc/* to /etc/pmacct/
 
 # Change the device name and IP network addresses in file
 
@@ -43,18 +43,18 @@ pmacctd -i ens18 -f /etc/pmacct/pmacctd.conf ;
 
 # Create SQLite3 DB file:
 
-cd /opt/TrafficControl/ ; ./create_db.py
+cd /opt/traffic-control/ ; ./create_db.py
 
 # Example run PMACCT command from screen:
 
-cd /opt/TrafficControl
+cd /opt/traffic-control/
 
 screen -d -m -A -S PMACCT ./pmacct.sh
 
 
 # Example run TC command from screen:
 
-cd /opt/TrafficControl
+cd /opt/traffic-control/
 
 screen -d -m -A -S TRAFFIC ./traffic_controle.py 0.0.0.0 10000 ens19
 
@@ -75,7 +75,7 @@ cd /opt ; git clone https://github.com/EvFoAn/TrafficControl.git
 # Merge configuration file from catalog
 mv /etc/pmacct/ /etc/pmacct.orig
 
-ln -s /opt/TrafficControl/pmacct_config/etc /etc/pmacct
+ln -s /opt/traffic-control/pmacct_config/etc /etc/pmacct
 
 # Change the device name and IP network addresses in file:
 /etc/pmacct/pmacctd-pnrg.conf
@@ -91,7 +91,7 @@ vim ./pmacct.sh
 ... device='ens18' ...
 
 # Run pmacct_traffic_control
-cd /opt/TrafficControl
+cd /opt/traffic-control/
 
 /usr/bin/screen -d -m -A -S PMACCT ./pmacct.sh
 
@@ -113,7 +113,7 @@ RUN apt-get update && apt-get install -y python3 python3-pip git librrd-dev sqli
 
 RUN pip3 install rrdtool flask-debugtoolbar flask
 
-CMD ["python3", "/opt/TrafficControl/traffic_count.py", "0.0.0.0", "10000", "ens18"]
+CMD ["python3", "/opt/traffic-control/traffic_count.py", "0.0.0.0", "10000", "ens18"]
 
 EOF
 
@@ -126,7 +126,7 @@ docker build .
 
 .......
 
-Step 4/4 : CMD ["python3", "/opt/TrafficControl/traffic_count.py", "0.0.0.0", "10000", "ens18"] ---> Running in 41cc4fb92e0d
+Step 4/4 : CMD ["python3", "/opt/traffic-control/traffic_count.py", "0.0.0.0", "10000", "ens18"] ---> Running in 41cc4fb92e0d
 
 Removing intermediate container 41cc4fb92e0d
 
@@ -136,7 +136,7 @@ Successfully built a4fffd00378a
 
 # Run container
 
-docker run -it -p 10000:10000 -v /opt/TrafficControl:/opt/TrafficControl a4fffd00378a
+docker run -it -p 10000:10000 -v /opt/traffic-control/:/opt/traffic-control/ a4fffd00378a
 
 # Commit container
 
