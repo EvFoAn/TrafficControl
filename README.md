@@ -70,7 +70,7 @@ apt install pmacct
 
 # Clone remote repositoy
 
-cd /opt ; git clone https://github.com/EvFoAn/TrafficControl.git
+cd /opt ; git clone repository
 
 # Merge configuration file from catalog
 mv /etc/pmacct/ /etc/pmacct.orig
